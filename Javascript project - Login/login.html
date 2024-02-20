@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body>
+    <div id="login">
+        <div class="invullen">
+            <h1>Inloggen</h1>
+            <form onsubmit="return validateForm()">
+                <p>Wat is je achternaam?</p>
+                <input type="text" class="ja" required><br><br>
+                <p>Wat is je voornaam?</p>
+                <input type="text" class="ja"><br>
+                <p>Wat is je rol?</p>
+                <label>
+                    <input type="radio" name="rol" value="administrator"> Administrator
+                </label>
+                <label><br>
+                    <input type="radio" name="rol" value="student"> Student
+                </label><br>
+                <p>Wat is je wachtwoord?</p>
+                <input type="password" class="ja"><br>
+                <button type="submit">Inloggen</button>
+            </form>
+        </div>
+    </div>
+
+<script>
+    function validateForm() {
+    var role = document.querySelector('input[name="rol"]:checked');
+    var password = document.querySelector('input[type="password"]').value;
+    if (!role) {
+        alert("Rol ongeldig!");
+        return false;
+    }
+    if (role.value === "administrator" && password === "admin") {
+        alert("Welkom");
+        return true;
+    } else if (role.value === "student" && password === "student") {
+        alert("Welkom!");
+        return true;
+    } else {
+        alert("Code ongeldig!");
+        return false;
+    }
+}
+</script>
+</body>
+</html>
