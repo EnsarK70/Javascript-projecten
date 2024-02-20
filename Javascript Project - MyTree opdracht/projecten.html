@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="projecten.css">
+    <script src="search.js" defer></script>
+    <link rel="stylesheet" href="search.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="hamburger" type="checkbox" />
+    <label class="hamburger_btn" for="hamburger">
+        <span></span>
+    </label>
+
+    <ul class="hamburger_menu">
+        <li><a href="index.html"><img src="logo.png" alt="logo" width="40px" /></a></li>
+        <li><a href="profiel.html">Profiel</a></li>
+        <li><a href="inloggen.html">Inloggen</a></li>
+    </ul>
+
+    <div class="carousel">
+        <div class="carousel-side-btn left-btn">&#10594;</div>
+        <div class="carousel-side-btn right-btn">&#10596;</div>
+            <img src="voorkant.png" alt="Image 1">
+            <img src="iphone15nieuwe.png" alt="Image 2">
+            <img src="iPhone15.png" alt="Image 3">
+        </div>
+
+        <div class="carousel-btns">
+            <div class="carousel-btn active"></div>
+            <div class="carousel-btn"></div>
+            <div class="carousel-btn"></div>
+        </div>
+
+        <script>
+            const carouselImages = document.querySelectorAll('.carousel img');
+            const carouselButtons = document.querySelectorAll('.carousel-btn');
+            const leftBtn = document.querySelector('.left-btn');
+            const rightBtn = document.querySelector('.right-btn');
+
+            let currentIndex = 0;
+
+            function showImage(index) {
+                carouselImages.forEach((image, i) => {
+                    if (i === index) {
+                        image.style.display = 'block';
+                    } else {
+                        image.style.display = 'none';
+                    }
+                });
+
+                carouselButtons.forEach((button, i) => {
+                    if (i === index) {
+                        button.classList.add('active');
+                    } else {
+                        button.classList.remove('active');
+                    }
+                });
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % carouselImages.length;
+                showImage(currentIndex);
+            }
+
+            function showPreviousImage() {
+                currentIndex = (currentIndex - 1 + carouselImages.length) % carouselImages.length;
+                showImage(currentIndex);
+            }
+
+            leftBtn.addEventListener('click', showPreviousImage);
+            rightBtn.addEventListener('click', showNextImage);
+
+            carouselButtons.forEach((button, i) => {
+                button.addEventListener('click', () => {
+                    currentIndex = i;
+                    showImage(currentIndex);
+                });
+            });
+
+            showImage(currentIndex);
+        </script>
+
+        <main>
+            <section>
+                <center>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Zoek projecten" id="zoekTekst"
+                            onkeyup="zoekProjecten(document.getElementById('zoekTekst').value,)" />
+                    </div>
+                    <div id="grid">
+
+                    </div>
+                </center>
+            </section>
+        </main>
+
+        <footer>
+            <img src="mytree.png" alt="footer">
+        </footer>
+
+    </body>
+
+</html>
